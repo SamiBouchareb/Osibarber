@@ -67,15 +67,11 @@ export function Hero() {
         />
       </div>
 
-      {/* Content Container with Glass Effect */}
+      {/* Content Container with Glass Effect - Removed scroll transform */}
       <div className="relative z-30 max-w-7xl mx-auto px-6 py-20">
         <div 
           className="max-w-3xl mx-auto backdrop-blur-sm bg-black/10 p-8 rounded-2xl border border-white/10
             shadow-2xl transform hover:scale-[1.02] transition-all duration-300"
-          style={{
-            transform: `translateY(${scrollPosition * 0.2}px)`,
-            opacity: Math.max(1 - scrollPosition / 700, 0),
-          }}
         >
           {/* Main Text with Enhanced Typography */}
           <div className="space-y-2 text-center mb-8">
@@ -159,15 +155,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Add the keyframe animation for the gradient */}
-      <style jsx>{`
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
     </section>
   );
 }

@@ -10,6 +10,8 @@ import { Footer } from './components/Footer';
 import { ServiceSection } from './components/ServiceSection/ServiceSection';
 import { HallOfFame } from './components/HallOfFame/HallOfFame';
 import { SalonGallery } from './components/SalonGallery/SalonGallery';
+import { ProductSection } from './components/ProductSection/ProductSection';
+import { AIVoiceAgent } from './components/AIVoiceAgent';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <ServiceSection />
         <HallOfFame />
         <SalonGallery />
+        <ProductSection />
+        <AIVoiceAgent />
         <InstagramFeed />
         <Contact />
       </main>

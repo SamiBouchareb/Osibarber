@@ -26,6 +26,9 @@ export default {
           '50%': { transform: 'translate(10%, 10%) rotate(5deg)' },
         },
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      }
     },
   },
   plugins: [],

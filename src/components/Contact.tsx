@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Clock, Navigation2 } from 'lucide-react';
+import { MapPin, Phone, Clock, Navigation2, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -38,140 +38,104 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary-light to-secondary opacity-90" />
-      <div className="absolute inset-0 bg-[url('/assets/pattern.png')] opacity-5" />
+    <section id="contact" className="relative min-h-screen flex items-center py-32 bg-[#0a0a0a]">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-500/5 via-transparent to-transparent" />
+      </div>
       
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="relative max-w-7xl mx-auto px-6"
+        className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Heading Section */}
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-3 block">
+        <motion.div variants={itemVariants} className="text-center mb-20">
+          <span className="inline-block px-4 py-1 bg-red-500/10 rounded-full text-red-500 text-sm font-medium tracking-wider uppercase mb-6">
             Ihr Weg zu uns
           </span>
-          <h2 className="text-6xl font-alex-brush text-primary mb-4">Besuchen Sie Uns</h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Erleben Sie erstklassigen Service in unserem Salon
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <span className="bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
+              Besuchen Sie Uns
+            </span>
+          </h2>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
+            Erleben Sie erstklassigen Service in unserem Premium-Salon im Herzen von Hamburg
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left: Opening Hours */}
+        <div className="grid lg:grid-cols-3 gap-8 xl:gap-12">
+          {/* Opening Hours */}
           <motion.div variants={itemVariants}>
-            <ContactCard
-              icon={Clock}
-              title="Öffnungszeiten"
-              details={[
-                'Montag - Freitag:',
-                '09:00 - 20:00 Uhr',
-                'Samstag:',
-                '10:00 - 18:00 Uhr',
-                'Sonntag:',
-                'Geschlossen'
-              ]}
-              className="h-full"
-            />
+            <div className="group h-full p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 
+              hover:border-white/20 transition-all duration-300">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-xl bg-red-500/10">
+                  <Clock className="w-6 h-6 text-red-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-white">Öffnungszeiten</h3>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { day: 'Montag - Freitag', hours: '09:00 - 20:00 Uhr' },
+                  { day: 'Samstag', hours: '10:00 - 18:00 Uhr' },
+                  { day: 'Sonntag', hours: 'Geschlossen' }
+                ].map((schedule, index) => (
+                  <div key={index} className="flex justify-between items-center">
+                    <span className="text-white/70">{schedule.day}</span>
+                    <span className="text-white font-medium">{schedule.hours}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Center: Address & Map */}
-          <motion.div variants={itemVariants} className="lg:col-span-1">
-            <ContactCard
-              icon={MapPin}
-              title="Unsere Adresse"
-              details={[
-                'Papenhuder Str. 52',
-                '22087 Hamburg'
-              ]}
-              className="mb-4"
-            >
-              <div className="mt-4 rounded-lg overflow-hidden border border-primary/10">
+          {/* Address & Map */}
+          <motion.div variants={itemVariants} className="lg:col-span-2">
+            <div className="h-full p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 
+              hover:border-white/20 transition-all duration-300">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-xl bg-red-500/10">
+                    <MapPin className="w-6 h-6 text-red-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Unsere Adresse</h3>
+                </div>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${SALON_COORDINATES.lat},${SALON_COORDINATES.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 
+                    transition-all duration-300 text-white/80 hover:text-white text-sm"
+                >
+                  <Navigation2 className="w-4 h-4" />
+                  <span>Route planen</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+
+              <div className="mb-6 space-y-1">
+                <p className="text-white text-lg">Papenhuder Str. 52</p>
+                <p className="text-white/70">22087 Hamburg</p>
+              </div>
+
+              <div className="rounded-xl overflow-hidden border border-white/10">
                 <iframe
                   src={`https://www.openstreetmap.org/export/embed.html?bbox=${SALON_COORDINATES.lng - 0.002}%2C${SALON_COORDINATES.lat - 0.002}%2C${SALON_COORDINATES.lng + 0.002}%2C${SALON_COORDINATES.lat + 0.002}&layer=mapnik&marker=${SALON_COORDINATES.lat}%2C${SALON_COORDINATES.lng}`}
-                  className="w-full h-[180px]"
+                  className="w-full h-[300px]"
                   frameBorder="0"
                   title="Salon Location"
                   loading="lazy"
-                  style={{ border: 0 }}
+                  style={{ filter: 'grayscale(1) contrast(1.2)' }}
                 />
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-4 inline-flex items-center text-primary text-sm font-medium"
-                onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${SALON_COORDINATES.lat},${SALON_COORDINATES.lng}`, '_blank')}
-              >
-                <Navigation2 className="h-4 w-4 mr-2" />
-                Route planen
-              </motion.button>
-            </ContactCard>
-          </motion.div>
-
-          {/* Right: Contact Info */}
-          <motion.div variants={itemVariants}>
-            <ContactCard
-              icon={Phone}
-              title="Kontaktieren Sie uns"
-              details={[
-                'Telefon:',
-                '+49 (0) 40 123456',
-                'E-Mail:',
-                'info@osibarbier.de'
-              ]}
-              className="h-full"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-6 w-full bg-primary/10 hover:bg-primary/20 text-primary py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
-                onClick={() => window.location.href = 'tel:+4940123456'}
-              >
-                <Phone className="h-4 w-4 mr-2" />
-                Jetzt anrufen
-              </motion.button>
-            </ContactCard>
+            </div>
           </motion.div>
         </div>
       </motion.div>
     </section>
-  );
-}
-
-interface ContactCardProps {
-  icon: React.ElementType;
-  title: string;
-  details: string[];
-  className?: string;
-  children?: React.ReactNode;
-}
-
-function ContactCard({ 
-  icon: Icon, 
-  title, 
-  details,
-  className = '',
-  children
-}: ContactCardProps) {
-  return (
-    <motion.div 
-      whileHover={{ scale: 1.02 }}
-      className={`bg-secondary/40 backdrop-blur-sm p-6 rounded-xl shadow-lg transition-all duration-300 border border-white/5 ${className}`}
-    >
-      <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-        <Icon className="h-6 w-6 text-primary" />
-      </div>
-      <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
-      <div className="space-y-1">
-        {details.map((detail, index) => (
-          <p key={index} className="text-gray-300 text-sm leading-relaxed">{detail}</p>
-        ))}
-      </div>
-      {children}
-    </motion.div>
   );
 }

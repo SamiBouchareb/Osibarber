@@ -19,7 +19,7 @@ const reviews: Review[] = [
   },
   {
     author: "Dennis Heeren",
-    content: "Drei Jahre wohne ich schon in Uhlenhorst und solange bin ich auch schon bei Osis Barbier! Tolle Gastgeber & sehr guter Service ☺️",
+    content: "Drei Jahre wohne ich schon in Uhlenhorst und solange bin ich auch schon bei Osis Barbier! Tolle Gastgeber & sehr guter Service ",
     date: "vor 4 Monaten"
   },
   {
@@ -120,7 +120,7 @@ export const ReviewCarousel: React.FC = () => {
           <div className="text-center relative">
             {/* Decorative Background Text */}
             <div className="absolute inset-0 flex items-center justify-center -mt-2 select-none pointer-events-none">
-              <span className="text-6xl font-bold text-white/[0.02] tracking-wider">REVIEWS</span>
+              <span className="text-6xl font-bold text-white/[0.02] tracking-wider"></span>
             </div>
             
             {/* Main Title */}
@@ -139,7 +139,7 @@ export const ReviewCarousel: React.FC = () => {
           </div>
 
           {/* Google Badge */}
-          <div className="absolute right-4 top-0 md:right-8">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-12 md:-top-12">
             <div className="flex items-center space-x-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2 
               border border-white/10 transform hover:scale-105 transition-all duration-300">
               <img 
@@ -244,7 +244,7 @@ export const ReviewCarousel: React.FC = () => {
       </div>
 
       {/* Custom Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes float-particle {
           0%, 100% {
             transform: translate(0, 0) scale(1);
